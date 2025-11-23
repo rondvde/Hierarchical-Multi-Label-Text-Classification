@@ -76,11 +76,10 @@ def propagate_labels(labels, G):
 def generate_labels():
     id2name, name2id, G, class_keywords = load_data()
     
-    silver_data = {} # {review_id: [label_id_1, label_id_2...]}
+    silver_data = {} 
     
-    print("\n--- IGENERATING SILVER LABELS ---")
+    print("\n--- GENERATING SILVER LABELS WITH REGEX ---")
     
-    # reading training data line by line
     with open(FILES["train"], 'r', encoding='utf-8') as f:
         lines = f.readlines()
         
@@ -88,28 +87,30 @@ def generate_labels():
         parts = line.strip().split('\t', 1)
         if len(parts) < 2: continue
         
-        rid, text = parts[0], parts[1].lower() # lowercasing text
+        rid, text = parts[0], parts[1].lower()
+        
+        text_clean = re.sub(r'[^a-z0-9\s]', ' ', text)
         
         found_labels = []
         
         # MATCHING ALGORITHM
         for cid, kws in class_keywords.items():
             for kw in kws:
-                if kw in text: 
-                    found_labels.append(cid)
-                    break
+                if kw in text_clean:
+                    pattern = r'\b' + re.escape(kw) + r'\b'
+                    if re.search(pattern, text_clean):
+                        found_labels.append(cid)
+                        break
         
         # HIERARCHICAL PROPAGATION
         if found_labels:
             final_labels = propagate_labels(found_labels, G)
             silver_data[rid] = final_labels
             
-    # SAVING
     with open(OUTPUT_FILE, 'w') as f:
         json.dump(silver_data, f)
         
-    print(f"\nDONE! {len(silver_data)} reviews labelled out of {len(lines)}.")
-    print(f"file saved as: {OUTPUT_FILE}")
+    print(f"\nDONE! {len(silver_data)} reviews labelled.")
 
 if __name__ == "__main__":
     generate_labels()
