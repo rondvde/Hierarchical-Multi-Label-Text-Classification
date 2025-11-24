@@ -16,7 +16,7 @@ FILES = {
     "classes": "classes.txt",
     "hierarchy": "class_hierarchy.txt",
     "keywords": "class_related_keywords.txt",
-    "train": "train/train_corpus.txt"
+    "train": "train/train_corpus_cleaned.txt"
 }
 OUTPUT_FILE = "silver_labels.json"
 
