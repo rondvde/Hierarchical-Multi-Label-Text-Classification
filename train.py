@@ -283,7 +283,7 @@ def train_self_training_phase(model, dataset, batch_size, optimizer, device):
 # ==========================================
 
 def main():
-    print(f"🚀 Starting TaxoClass Training Pipeline...")
+    print(f" Starting TaxoClass Training Pipeline...")
     torch.manual_seed(42)
 
     # 1. Load Texts
@@ -347,8 +347,8 @@ def main():
             print(f"   Self-Train Epoch {ep+1}: Loss = {loss:.4f}")
 
     # Save Final Model
-    torch.save(model.state_dict(), "saved_models/taxoclass_final_sf_llm.pt")
-    print("\nTraining Complete. Model saved to 'saved_models/taxoclass_final_sf_llm.pt'")
+    torch.save(model.state_dict(), "saved_models/taxoclass_final_sl_llm.pt")
+    print("\nTraining Complete. Model saved to 'saved_models/taxoclass_final_sl_llm.pt'")
 
 if __name__ == "__main__":
     main()
