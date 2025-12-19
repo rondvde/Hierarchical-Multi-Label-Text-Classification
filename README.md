@@ -15,11 +15,19 @@ The code is implemented in Python 3. It requires **PyTorch** and the **Hugging F
 Before running the pipeline, ensure all necessary packages are installed:
 
 torch>=2.0.0
+
 transformers>=4.30.0
+
 networkx>=3.0
+
 google-generativeai>=0.3.0 # not necessary if the llm_annotate.py file is not executed
+
 scipy>=1.10.0
+
 numpy>=1.24.0
+
 pandas>=2.0.0
+
 tqdm>=4.65.0
+
 langdetect>=1.0.9
