@@ -3,16 +3,26 @@
 """
 Created on Mon Nov 24 15:04:04 2025
 
-@author: daviderondini
+@author: Rondini Davide
 """
 
 import re
 from langdetect import detect, LangDetectException
 from tqdm import tqdm
+import random
+import numpy as np
+import torch
 
 # --- CONFIGURATION ---
 INPUT_FILE = "train/train_corpus.txt"
 OUTPUT_FILE = "train/train_corpus_cleaned.txt"
+
+def set_seed(seed):
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+    random.seed(seed)
+    np.random.seed(seed)
 
 def is_gibberish(text):
     words = text.split()
@@ -40,6 +50,7 @@ def is_english(text):
     return False
 
 def clean_corpus():
+    set_seed(42)
     print("--- STARTING DATA CLEANING ---")
     
     clean_lines = []
