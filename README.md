@@ -4,10 +4,10 @@
 **Course:** DATA304 - Big Data Analysis (Korea University)  
 **Date:** December 20, 2025
 
-## 📌 Project Overview
+## Project Overview
 This repository contains the full implementation for the final project on **Hierarchical Multi-Label Text Classification**. The solution leverages a Graph Neural Network (GNN) combined with a BERT-based encoder. The training pipeline utilizes **Silver Label Generation** (inspired by TaxoClass) and **Self-Training** strategies to handle the lack of labeled training data.
 
-## 🛠️ Prerequisites & Installation
+## Prerequisites & Installation
 
 The code is implemented in Python 3. It requires **PyTorch** and the **Hugging Face Transformers** library.
 
